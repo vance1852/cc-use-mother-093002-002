@@ -1,5 +1,6 @@
-"""技能赛训协作基础服务的服务端基础包。"""
+"""承诺治理平台服务端包。"""
 
+from .commitment_service import CommitmentService
 from .service import DomainService
 
-__all__ = ["DomainService"]
+__all__ = ["DomainService", "CommitmentService"]

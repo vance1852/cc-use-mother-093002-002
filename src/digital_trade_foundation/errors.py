@@ -7,6 +7,10 @@ class DomainError(Exception):
     code = "domain_error"
     status = 400
 
+    def __init__(self, message: str = "", *, payload: dict | None = None) -> None:
+        super().__init__(message)
+        self.payload = payload
+
 
 class ValidationError(DomainError):
     """输入字段不符合业务约束。"""
@@ -33,3 +37,17 @@ class ConflictError(DomainError):
 
     code = "conflict"
     status = 409
+
+
+class PreconditionFailed(DomainError):
+    """阶段生效或拨付所需的条件组尚未齐备。"""
+
+    code = "precondition_failed"
+    status = 412
+
+
+class UnprocessableState(DomainError):
+    """对象当前状态不允许执行该动作。"""
+
+    code = "unprocessable_state"
+    status = 422
